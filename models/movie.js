@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
-  country: { //— страна создания фильма. Обязательное поле-строка.
+  country: { // — страна создания фильма. Обязательное поле-строка.
     type: String,
     required: [true, 'Поле должно быть заполнено'],
   },
@@ -38,7 +38,8 @@ const movieSchema = new mongoose.Schema({
       message: 'Некорректный URL',
     },
   },
-  thumbnail: { // миниатюрное изображение постера к фильму. Обязательное поле-строка. Запишите её URL-адресом.
+  // миниатюрное изображение постера к фильму. Обязательное поле-строка. Запишите её URL-адресом.
+  thumbnail: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
     validate: {
@@ -51,7 +52,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     ref: 'user',
   },
-  movieId: { // — id фильма, который содержится в ответе сервиса MoviesExplorer. Обязательное поле в формате number.
+  // — id фильма, который содержится в ответе сервиса MoviesExplorer.
+  // Обязательное поле в формате number.
+  movieId: {
     type: Number,
     required: [true, 'Поле должно быть заполнено'],
   },

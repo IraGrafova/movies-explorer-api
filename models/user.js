@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Поле "password" должно быть заполнено'],
     select: false,
   },
-}, { versionKey: false })
+}, { versionKey: false });
 
 userSchema.methods.toJSON = function () {
   const user = this.toObject();

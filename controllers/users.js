@@ -1,12 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jsonWebToken = require('jsonwebtoken');
 const User = require('../models/user');
-// const {
-//   SignupError,
-//   ValidationError,
-//   LoginError,
-//   NotFound,
-// } = require('../middlewares/errors');
+const {
+  SignupError,
+  LoginError,
+  NotFound,
+} = require('../middlewares/errors');
 
 const createUser = (req, res, next) => {
   bcrypt
@@ -19,7 +18,7 @@ const createUser = (req, res, next) => {
         .catch((err) => {
           if (err.code === 11000) {
             next(
-          //    new SignupError('Пользователь с указанным email уже существует'),
+              new SignupError('Пользователь с указанным email уже существует'),
             );
           } else next(err);
         });
@@ -34,7 +33,7 @@ const login = (req, res, next) => {
   // найти пользователя
   User.findOne({ email })
     .select('+password')
-  //  .orFail(() => new LoginError('Пользователь не найден'))
+    .orFail(() => new LoginError('Пользователь не найден'))
     .then((user) =>
       // проверить совпадает ли пароль
       // eslint-disable-next-line implicit-arrow-linebreak
@@ -57,7 +56,7 @@ const login = (req, res, next) => {
           res.send({ data: user.toJSON() });
         } else {
           // если не совпадает - вернуть ошибку
-         // next(new LoginError('Передан неверный логин или пароль'));
+          next(new LoginError('Передан неверный логин или пароль'));
         }
       }).catch(next))
     .catch(next);
@@ -65,14 +64,8 @@ const login = (req, res, next) => {
 
 const getMe = (req, res, next) => {
   User.findById(req.user._id)
-  // //  .orFail(() => new NotFound('id не найден'))
-    .then((user) =>
-    {console.log(user)
-   console.log(user._id)
-
-   res.status(200).send(user)
-  }
-    )
+    .orFail(() => new NotFound('id не найден'))
+    .then((user) => { res.status(200).send(user); })
     .catch(next);
 };
 
@@ -81,7 +74,7 @@ const changeUser = (req, res, next) => {
     new: true, // обработчик then получит на вход обновлённую запись
     runValidators: true,
   })
-    //.orFail(() => new NotFound('id не найден'))
+    .orFail(() => new NotFound('id не найден'))
     .then((user) => res.status(200).send(user))
     .catch(next);
 };
