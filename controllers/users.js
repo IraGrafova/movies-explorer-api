@@ -39,13 +39,14 @@ const login = (req, res, next) => {
       // eslint-disable-next-line implicit-arrow-linebreak
       bcrypt.compare(password, user.password).then((isValidUser) => {
         if (isValidUser) {
+          const { NODE_ENV, JWT_SECRET } = process.env;
           // если совпадает - вернуть пользователя
           // создать JWT
           const jwt = jsonWebToken.sign(
             {
               _id: user._id,
             },
-            'SECRET',
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           );
           // прикрепить его к куке
           res.cookie('jwt', jwt, {
