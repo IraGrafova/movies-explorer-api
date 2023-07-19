@@ -7,11 +7,12 @@ const {
 } = require('../middlewares/errors');
 
 const {
-  createUser, login,
+  createUser, login, logout,
 } = require('../controllers/users');
 
 router.post('/signin', signinJoi, login);
 router.post('/signup', signupJoi, createUser);
+router.get('/signout', logout);
 
 router.use(auth);
 

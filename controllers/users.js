@@ -80,10 +80,19 @@ const changeUser = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+  try {
+    res.clearCookie('jwt').status(200).send({ message: 'Выход выполнен' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
 
   createUser,
   changeUser,
   login,
   getMe,
+  logout,
 };
