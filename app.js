@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,11 +12,11 @@ const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const { PORT, DB_ADRESS } = process.env;
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1/Diplom', {
+mongoose.connect(DB_ADRESS, {
   useNewUrlParser: true,
 });
 
