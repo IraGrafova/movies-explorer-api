@@ -38,7 +38,7 @@ class SignupError extends Error {
 
 const idJoi = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().pattern(/^[0-9a-fA-F]{24}$/),
+    id: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required(),
   }),
 });
 

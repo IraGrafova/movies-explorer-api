@@ -77,7 +77,13 @@ const changeUser = (req, res, next) => {
   })
     .orFail(() => new NotFound('id не найден'))
     .then((user) => res.status(200).send(user))
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 11000) {
+        next(
+          new SignupError('Пользователь с указанным email уже существует'),
+        );
+      } else next(err);
+    });
 };
 
 const logout = (req, res, next) => {
