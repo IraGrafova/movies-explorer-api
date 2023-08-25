@@ -12,7 +12,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Слушаем 3000 порт
-const { PORT, DB_ADRESS } = process.env;
+const { PORT = 3000, DB_ADRESS = 'mongodb://127.0.0.1/Diplom' } = process.env;
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(requestLogger); // подключаем логгер запросов
 
 app.use(cors({
   credentials: true,
-  origin: 'localhost:3000/',
+  origin: 'http://localhost:3001',
 }));
 
 app.use(router);

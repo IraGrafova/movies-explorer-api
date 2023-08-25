@@ -73,10 +73,11 @@ const createMovieJoi = celebrate({
     description: Joi.string().required(),
     image: Joi.string().pattern(/https?:\/\/[-._~:/?#[\]@!$&'()*+,;=\w]{1,}/m).required(),
     trailerLink: Joi.string().pattern(/https?:\/\/[-._~:/?#[\]@!$&'()*+,;=\w]{1,}/m).required(),
-    thumbnail: Joi.string().pattern(/https?:\/\/[-._~:/?#[\]@!$&'()*+,;=\w]{1,}/m).required(),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
+    created_at: Joi.string(),
+    updated_at: Joi.string(),
   }),
 });
 

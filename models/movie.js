@@ -38,15 +38,6 @@ const movieSchema = new mongoose.Schema({
       message: 'Некорректный URL',
     },
   },
-  // миниатюрное изображение постера к фильму. Обязательное поле-строка. Запишите её URL-адресом.
-  thumbnail: {
-    type: String,
-    required: [true, 'Поле должно быть заполнено'],
-    validate: {
-      validator: (v) => validator.isURL(v),
-      message: 'Некорректный URL',
-    },
-  },
   owner: { // — _id пользователя, который сохранил фильм. Обязательное поле.
     type: mongoose.Schema.Types.ObjectId,
     required: true,
