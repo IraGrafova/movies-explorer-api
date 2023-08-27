@@ -29,7 +29,7 @@ app.use(requestLogger); // подключаем логгер запросов
 
 app.use(cors({
   credentials: true,
-  origin: 'http://grafs-diplom.nomoredomainsicu.ru',
+  origin: 'https://grafs-diplom.nomoredomainsicu.ru',
 }));
 
 app.use(router);
