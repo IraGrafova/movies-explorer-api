@@ -50,7 +50,7 @@ const login = (req, res, next) => {
           );
           // прикрепить его к куке
           res.cookie('jwt', jwt, {
-            maxAge: 360000,
+            maxAge: 3600000 * 24 * 7,
             httpOnly: true,
             sameSite: 'none',
             secure: NODE_ENV === 'production',
