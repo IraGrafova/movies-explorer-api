@@ -48,9 +48,11 @@ const login = (req, res, next) => {
             },
             NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           );
+
+          const maxAgeCookie = 3600000 * 24 * 7;
           // прикрепить его к куке
           res.cookie('jwt', jwt, {
-            maxAge: 3600000 * 24 * 7,
+            maxAge: maxAgeCookie,
             httpOnly: true,
             sameSite: 'none',
             secure: NODE_ENV === 'production',
