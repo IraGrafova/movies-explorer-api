@@ -53,7 +53,7 @@ const login = (req, res, next) => {
           res.cookie('jwt', jwt, {
             maxAge: 604800000,
             httpOnly: true,
-            sameSite: 'None',
+            sameSite: None,
             secure: NODE_ENV === 'production',
           });
           res.send({ data: user.toJSON() });
