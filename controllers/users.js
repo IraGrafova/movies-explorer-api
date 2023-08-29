@@ -90,14 +90,7 @@ const changeUser = (req, res, next) => {
 
 const logout = (req, res, next) => {
   try {
-    res.clearCookie('jwt', 
-    {
-      maxAge: 604800000,
-      httpOnly: true,
-      sameSite: 'none',
-      secure: NODE_ENV === 'production',
-    }
-    ).send({ message: 'Выход выполнен' });
+    res.clearCookie('jwt', { sameSite: 'none' }).send({ message: 'Выход выполнен' });
   } catch (err) {
     next(err);
   }
