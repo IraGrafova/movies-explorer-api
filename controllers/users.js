@@ -54,7 +54,7 @@ const login = (req, res, next) => {
             maxAge: 604800000,
             httpOnly: true,
             sameSite: 'none',
-            secure: NODE_ENV === 'production',
+            secure: true,
           });
           res.send({ data: user.toJSON() });
         } else {
