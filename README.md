@@ -7,5 +7,5 @@ https://api.grafs-diplom.nomoredomains.xyz/signup
 ### Сборка проекта
 Для локального запуска проекта необходимо изменить в 32 строке app.js адрес на http://localhost:3001, а также в файлах Api.js и Auth.js.
 
-Установка зависимостей: npm install
-Запуск на локальной машине: npm run dev
+Установка зависимостей: *npm install* \
+Запуск на локальной машине: *npm run dev*
